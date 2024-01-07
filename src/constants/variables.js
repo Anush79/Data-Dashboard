@@ -1,0 +1,1 @@
+export const BASE_URL = "https://d8a081e4-e853-484f-b72e-9036bea7112f-00-2zjix90cpz63f.worf.replit.dev"

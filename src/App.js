@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
 
+import Login from './pages/Login';
+import { Route, Routes } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import SignUp from './pages/SignUp';
+import Header from './components/Header';
+import { useUser } from './context/UserContext';
+import Loading from './components/Loading';
+
 function App() {
+  const { user ,loading} = useUser()
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      {
+        loading && <Loading/>
+      }
+      <Routes>
+        <Route path="/" element={user.token ? <Dashboard /> : <Login />} />
+        <Route path="/signup" element={user.token ? <Dashboard /> : <SignUp />} />
+        <Route path="/dashboard" element={user.token ? <Dashboard /> : <Login />} />
+      </Routes>
     </div>
   );
 }
