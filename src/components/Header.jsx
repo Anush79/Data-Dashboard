@@ -9,9 +9,9 @@ const {user ,logout}= useUser()
     <span className="logo">DataViz</span>
 
     <div className="user">
-      {user.email}
-    </div>
-    <Button onClick={logout} >Log out</Button>
-
+      {user.user.username}
+   
+    {user.token && <Button variant="outlined" onClick={logout} >Log out</Button>}
+ </div>
   </header>
 }

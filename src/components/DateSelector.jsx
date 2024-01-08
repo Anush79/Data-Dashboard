@@ -1,15 +1,27 @@
-import * as React from 'react';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { LocalizationProvider } from '@mui/x-date-pickers-pro';
-import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
-import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
-export default function BasicDateRangePicker() {
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DateRangePicker']}>
-        <DateRangePicker localeText={{ start: 'From', end: 'Up-to' }} />
-      </DemoContainer>
-    </LocalizationProvider>
-  );
+import { DateRangePicker } from 'react-date-range';
+import { useData } from '../context/DataContext';
+export default function DateRange(){
+
+const {filters,setFilters} = useData()
+  const selectionRange = {
+    startDate:filters.startDate ?? new Date(),
+    endDate:filters.endDate ?? new Date(),
+    key: 'selection',
+  }
+  console.log(selectionRange)
+
+  function handleSelect(ranges){
+    console.log(ranges);
+   setFilters(prev=>({...prev, startDate:ranges.selection.startDate,endDate:ranges.selection.endDate }))
+  }
+  
+  return <>
+    <DateRangePicker
+        ranges={[selectionRange]}
+        onChange={handleSelect}
+      />
+  </>
 }

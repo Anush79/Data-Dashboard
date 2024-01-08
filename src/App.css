@@ -15,6 +15,12 @@ header {
   flex-direction: column;
   align-items: center;
   margin: auto;
+  gap: 5px;
+}
+select{
+  padding:0.5rem;
+  border-radius:5px;
+  font-weight: 600;
 }
 .loader-container {
   width: 100%;
@@ -35,7 +41,11 @@ header {
   background: rgba(0, 0, 0, 0.834);
   z-index: 1;
 }
+.chartsContainer{
+  /* display: flex; */
+  flex-wrap: wrap;
 
+}
 .spinner {
   width: 64px;
   height: 64px;
@@ -44,10 +54,20 @@ header {
   border-radius: 50%;
   animation: spin-anim 1.2s linear infinite;
 }
-
+#preferencesForm{
+  display: flex;
+  margin: auto;
+  gap: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
+  }
+  button{
+    margin:2px
+  }
 @media(min-width:658px) {
   .chart-container{
     max-width: 50%;
+    min-height: 50%;
     margin: auto;
   }
 }

@@ -1,21 +1,54 @@
 // LineChart.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-plugin-zoom';
+import { useData } from '../context/DataContext';
 
 const LineChart = () => {
+  const { ageFiltered, filters } = useData()
+
+  const dateArray = ageFiltered?.reduce((acc, curr) => {
+    if (!(acc.includes(curr.Day))) return [...acc, curr.Day]
+    else return acc
+
+  }, [])
+
+
+
+  function calculateSumByDay(data) {
+    const sumByDay = {};
+
+    data.forEach(item => {
+        const day = item.Day;
+        const sum = item.A + item.B + item.C + item.D + item.E + item.F;
+
+        if (sumByDay[day]) {
+            sumByDay[day] += sum;
+        } else {
+            sumByDay[day] = sum;
+        }
+    });
+
+    return sumByDay;
+}
+
+const totaltime = calculateSumByDay(ageFiltered)
+
+
+
+
   const data = {
-    labels: ['January', 'February', 'March', 'April', 'May'],
+    labels: dateArray,
     datasets: [
       {
-        label: 'Dummy Data',
-        borderColor: 'rgba(75,192,192,1)',
-        backgroundColor: 'rgba(75,192,192,0.4)',
-        pointBackgroundColor: '#fff',
+        label: 'Total Time',
+        borderColor: "#3d5af1",
+        backgroundColor: "#3d5af1",
+
         pointBorderColor: 'rgba(75,192,192,1)',
         pointBorderWidth: 1,
         pointRadius: 5,
-        data: [65, 59, 80, 81, 56],
+        data: Object.values(totaltime)?? [],
       },
     ],
   };
@@ -24,10 +57,10 @@ const LineChart = () => {
     scales: {
       x: [
         {
-          type: 'time', // Assuming your data is time-based
+          type: 'time',
           distribution: 'linear',
           time: {
-            unit: 'month', // Adjust as needed (https://www.chartjs.org/docs/latest/axes/cartesian/time.html)
+            unit: 'time',
           },
         },
       ],
@@ -56,10 +89,12 @@ const LineChart = () => {
       },
     },
   };
+useEffect(()=>{
 
+},[filters])
   return (
     <div className='chart-container'>
-      <h2>Line Chart Example with Pan and Zoom</h2>
+      <h3>Line Chart with Date and total time</h3>
       <Line data={data} options={options} />
     </div>
   );

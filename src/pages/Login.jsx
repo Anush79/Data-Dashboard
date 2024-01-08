@@ -24,7 +24,8 @@ export default function Login() {
 
   return (
     <div className="loginContainer">
-      <h2>Login</h2>
+<h2><u>Welcome to Data Visualization Center</u> </h2>
+      <h3>Login</h3>
       <Box
         component="form"
         sx={{
