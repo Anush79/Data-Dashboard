@@ -126,10 +126,6 @@ export default function DataProvider({ children }) {
 
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  useEffect(() => {
     setCookie("filters", filters, { path: "/" });
   }, [filters]);
 
