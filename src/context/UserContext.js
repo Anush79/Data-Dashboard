@@ -77,6 +77,8 @@ export default function UserProvider({ children }) {
 function logout (){
   setUser({user:{}, token:false})
   toast.success("logged out successfully")
+  localStorage.removeItem("userData")
+  localStorage.removeItem("token")
   navigate('/')
 }
   return <UserContext.Provider value={{ user, loginFunction, signupFunction ,logout, loading}}>

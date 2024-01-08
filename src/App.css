@@ -53,16 +53,29 @@ select{
   border-color: #3d5af1 transparent #3d5af1 transparent;
   border-radius: 50%;
   animation: spin-anim 1.2s linear infinite;
-}
-#preferencesForm{
+ }
+ #preferencesForm{
   display: flex;
   margin: auto;
   gap: 5px;
   justify-content: center;
   flex-wrap: wrap;
   }
-  button{
+ button{
     margin:2px
+  }
+  .logo{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    letter-spacing: 4px;
+    border-bottom:solid #3d5af1;
+    border-left:solid #3d5af1;
+    padding-left:12px;
+  }
+  .logo::after{
+    content: ".";
+    font-size: 2rem;
+    color: #3d5af1;
   }
 @media(min-width:658px) {
   .chart-container{

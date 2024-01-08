@@ -8,6 +8,7 @@ import { useData } from "../context/DataContext";
 
 export default function Login() {
   const { gender, age, startDate, endDate } = useParams();
+  console.log("from params", { gender, age, startDate, endDate } )
   const { setFilters, setCookie } = useData();
   const [userData, setUserData] = useState({
     email: "",
