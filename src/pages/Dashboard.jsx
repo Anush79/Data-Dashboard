@@ -10,6 +10,7 @@ import DateRange from "../components/DateSelector";
 import LineChart from "../components/LineChart";
 import Loading from "../components/Loading";
 import { style } from "../constants/variables";
+import { copyLinkToShare } from "../constants/utils";
 
 export default function Dashboard() {
   const {
@@ -113,6 +114,9 @@ export default function Dashboard() {
 
         <Button variant="contained" size="small" onClick={resetPreferences}>
           Reset{" "}
+        </Button>
+        <Button variant="contained" size="small" onClick={copyLinkToShare}>
+         Share Chart
         </Button>
       </form>
       <div className="chartsContainer">

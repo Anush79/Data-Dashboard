@@ -1,3 +1,6 @@
+import {toast} from 'react-hot-toast'
+
+
 export function isNonEmptyObject(variable) {
   // Check if the variable is an object
   if (typeof variable === 'object' && variable !== null) {
@@ -15,4 +18,16 @@ export function convertDateFormat(inputDate) {
   var newDateFormat = parts[1] + "/" + parts[0] + "/" + parts[2];
 
   return newDateFormat;
+}
+
+export const copyLinkToShare =async ()=>{
+  var currentURL = window.location.href;
+console.log("Current URL: " + currentURL);
+  try{
+   const response = await navigator.clipboard.writeText(currentURL)
+   toast.success("link copied, share anywhere")
+  }catch(error){
+   toast.error("Sorry, something went wrong")
+   console.error(error)
+  }
 }
