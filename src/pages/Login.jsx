@@ -35,8 +35,8 @@ export default function Login() {
         autoComplete="off"
       >
 
-        <TextField id="outlined-basic" type="email" label="Email" variant="outlined" name='email' value={userData.email} onChange={onChangeHandler}/>
-        <TextField id="outlined-basic" type="password" label="Password" variant="outlined" name='password' value={userData.password} onChange={onChangeHandler}/>
+        <TextField id="outlined-basic" required type="email" label="Email" variant="outlined" name='email' value={userData.email} onChange={onChangeHandler}/>
+        <TextField id="outlined-basic" required type="password" label="Password" variant="outlined" name='password' value={userData.password} onChange={onChangeHandler}/>
       </Box>
       <Button variant="contained" size="medium" onClick={() => {
         loginFunction(userData)
