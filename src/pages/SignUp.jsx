@@ -28,7 +28,7 @@ export default function Signup() {
       <Box
         component="form"
         sx={{
-          '& > :not(style)': { m: 1, width: '20ch' },
+          '& > :not(style)': { m: 1, width: '30ch' },
         }}
         noValidate
         autoComplete="off"

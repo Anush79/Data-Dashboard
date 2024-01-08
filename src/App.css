@@ -7,19 +7,23 @@ header {
   flex-direction: row;
   justify-content: space-between;
   padding: 1rem 2rem;
-
 }
-.loginContainer{
+.loginContainer {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
   gap: 5px;
+  max-width: fit-content;
+  border-radius: 5px;
+  padding: 2rem;
+  color: #3d5af1;
+  box-shadow: 1px 1px 5px 3px rgb(203, 203, 203);
 }
-select{
-  padding:0.5rem;
-  border-radius:5px;
+select {
+  padding: 0.5rem;
+  border-radius: 5px;
   font-weight: 600;
 }
 .loader-container {
@@ -27,8 +31,8 @@ select{
   height: 100vh;
   position: fixed;
   background: rgba(0, 0, 0, 0.834)
-      url("https://media.giphy.com/media/8agqybiK5LW8qrG3vJ/giphy.gif") center
-      no-repeat;
+    url("https://media.giphy.com/media/8agqybiK5LW8qrG3vJ/giphy.gif") center
+    no-repeat;
   z-index: 1;
 }
 .loader-container {
@@ -41,10 +45,13 @@ select{
   background: rgba(0, 0, 0, 0.834);
   z-index: 1;
 }
-.chartsContainer{
-  /* display: flex; */
+/* .chartsContainer {
+  display: flex;
   flex-wrap: wrap;
-
+} */
+form {
+  display: flex;
+  flex-direction: column;
 }
 .spinner {
   width: 64px;
@@ -53,32 +60,43 @@ select{
   border-color: #3d5af1 transparent #3d5af1 transparent;
   border-radius: 50%;
   animation: spin-anim 1.2s linear infinite;
- }
- #preferencesForm{
+}
+
+#preferencesForm {
   display: flex;
+  flex-direction: row;
   margin: auto;
   gap: 5px;
   justify-content: center;
   flex-wrap: wrap;
-  }
- button{
-    margin:2px
-  }
-  .logo{
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    letter-spacing: 4px;
-    border-bottom:solid #3d5af1;
-    border-left:solid #3d5af1;
-    padding-left:12px;
-  }
-  .logo::after{
-    content: ".";
-    font-size: 2rem;
-    color: #3d5af1;
-  }
-@media(min-width:658px) {
-  .chart-container{
+}
+.user{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 800;
+}
+button {
+  margin: 2px;
+}
+.logo {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  letter-spacing: 4px;
+  border-bottom: solid #3d5af1;
+  border-left: solid #3d5af1;
+  padding-left: 12px;
+}
+.logo::after {
+  content: ".";
+  font-size: 2rem;
+  color: #3d5af1;
+}
+.logout:hover{
+border-color: red;
+}
+@media (min-width: 658px) {
+  .chart-container {
     max-width: 50%;
     min-height: 50%;
     margin: auto;
@@ -86,9 +104,9 @@ select{
 }
 @keyframes spin-anim {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }

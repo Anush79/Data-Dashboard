@@ -42,15 +42,15 @@ export default function Login() {
     );
   }, []);
   return (
-    <div cla  ssName="loginContainer">
+    <div className="loginContainer">
       <h2>
-        <u>Welcome to Data Visualization Center</u>{" "}
+        Welcome to Data Visualization Center{" "}
       </h2>
       <h3>Login</h3>
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
+          "& > :not(style)": { m: 1, width: "30ch" },
         }}
         noValidate
         autoComplete="off"
@@ -76,6 +76,9 @@ export default function Login() {
           onChange={onChangeHandler}
         />
       </Box>
+   
+
+   
       <Button
         variant="contained"
         size="medium"
@@ -99,6 +102,7 @@ export default function Login() {
       </Button>
 
       <Link to="/signup">New User, Sign Up here...</Link>
+     
     </div>
   );
 }

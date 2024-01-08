@@ -10,7 +10,7 @@ export default function DataProvider({ children }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedFeature, setFeature] = useState("");
-  const initialFilters = isNonEmptyObject(cookies.filters)
+  const initialFilters = isNonEmptyObject(cookies.filters) 
     ? cookies.filters
     : {
         age: "",
