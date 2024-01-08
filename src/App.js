@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={user.token ? <Dashboard /> : <Login />} />
         <Route path="/signup" element={user.token ? <Dashboard /> : <SignUp />} />
-        <Route path="/dashboard/:gender/:age" element={user.token ? <Dashboard /> : <Login />} />
+        <Route path="/dashboard/:gender/:age/:startDate/:endDate" element={user.token ? <Dashboard /> : <Login />} />
 
         <Route path="/dashboard/" element={user.token ? <Dashboard /> : <Login />} />
       <Route path='*' element={<h2>Something went wrong, route not found</h2>}/>

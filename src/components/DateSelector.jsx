@@ -11,13 +11,11 @@ const {filters,setFilters} = useData()
     endDate:filters.endDate ?? new Date(),
     key: 'selection',
   }
-  console.log(selectionRange)
-
+  
   function handleSelect(ranges){
-    console.log(ranges);
    setFilters(prev=>({...prev, startDate:ranges.selection.startDate,endDate:ranges.selection.endDate }))
   }
-  
+
   return <>
     <DateRangePicker
         ranges={[selectionRange]}

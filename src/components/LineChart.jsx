@@ -5,40 +5,10 @@ import 'chartjs-plugin-zoom';
 import { useData } from '../context/DataContext';
 
 const LineChart = () => {
-  const { ageFiltered, filters } = useData()
-
-  const dateArray = ageFiltered?.reduce((acc, curr) => {
-    if (!(acc.includes(curr.Day))) return [...acc, curr.Day]
-    else return acc
-
-  }, [])
-
-
-
-  function calculateSumByDay(data) {
-    const sumByDay = {};
-
-    data.forEach(item => {
-        const day = item.Day;
-        const sum = item.A + item.B + item.C + item.D + item.E + item.F;
-
-        if (sumByDay[day]) {
-            sumByDay[day] += sum;
-        } else {
-            sumByDay[day] = sum;
-        }
-    });
-
-    return sumByDay;
-}
-
-const totaltime = calculateSumByDay(ageFiltered)
-
-
-
+  const { filters,selectedFeature ,totalTimeSpentByFeature } = useData()
 
   const data = {
-    labels: dateArray,
+    labels: Object.keys(totalTimeSpentByFeature),
     datasets: [
       {
         label: 'Total Time',
@@ -48,7 +18,7 @@ const totaltime = calculateSumByDay(ageFiltered)
         pointBorderColor: 'rgba(75,192,192,1)',
         pointBorderWidth: 1,
         pointRadius: 5,
-        data: Object.values(totaltime)?? [],
+        data: Object.values(totalTimeSpentByFeature)?? [],
       },
     ],
   };
@@ -94,7 +64,7 @@ useEffect(()=>{
 },[filters])
   return (
     <div className='chart-container'>
-      <h3>Line Chart with Date and total time</h3>
+      <h3>Line Chart with Date and total time of Feature {selectedFeature}</h3>
       <Line data={data} options={options} />
     </div>
   );

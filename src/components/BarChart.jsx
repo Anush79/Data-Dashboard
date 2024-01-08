@@ -2,12 +2,10 @@
 import { Bar } from "react-chartjs-2";
 
 import { Chart as ChartJs } from 'chart.js/auto'
+import { useData } from "../context/DataContext";
 
-export default function BarChart({ chartData }) {
-function onClickHandler (e){
-  console.log(e)
-  console.log("hosdaidosao")
-}
+export default function BarChart({ chartData, barClickHandler }) {
+ const {filters:{startDate, endDate}} = useData()
 
 
   return (
@@ -16,19 +14,25 @@ function onClickHandler (e){
       <Bar
         data={chartData}
         options={{
-          onClick:(e)=>{
-            console.log("hhhhhhhhhhhhhh",e);
+          onClick: (event, elements) => {
+         
+      
+            if (elements.length > 0) {
+              const clickedElementIndex = elements[0].index;
+              barClickHandler(chartData.labels[clickedElementIndex])
+            }
           },
+
           plugins: {
             title: {
               display: true,
-              text: "Interactive Data Visualization"
+              text:`Showing Data from ${startDate?? startDate?.toDateString()} till ${endDate?? endDate?.toDateString()}`
             },
             legend: {
               display: false
             }
           },
-          indexAxis:"y"
+          indexAxis: "y"
         }}
       />
     </div>
