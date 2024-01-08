@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { createContext, useContext, useState } from "react";
 import { BASE_URL } from "../constants/variables";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -7,7 +6,7 @@ const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const navigate = useNavigate()
-  const [user, setUser] = useState({user:{}, token:localStorage.getItem("token")?? false})
+  const [user, setUser] = useState({user:localStorage.getItem("userData")??{}, token:localStorage.getItem("token")?? false})
   const [loading, setLoading] = useState(false)
   async function loginFunction(inputData) {
     setLoading(true);
@@ -31,6 +30,7 @@ export default function UserProvider({ children }) {
       setLoading(false)
       navigate('/dashboard')
       localStorage.setItem("token", data?.token)
+      localStorage.setItem("userData", data?.user)
       toast.success(data.message)
     } catch (e) {
       setLoading(false)
@@ -64,6 +64,7 @@ export default function UserProvider({ children }) {
       const data = await response.json()
       console.log(data);
       setUser({user:data?.user, token:data?.token})
+      localStorage.setItem("userData", data?.user)
       setLoading(false)
       navigate('/dashboard')
       toast.success(data.message)
