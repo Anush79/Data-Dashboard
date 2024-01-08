@@ -6,7 +6,7 @@ const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const navigate = useNavigate()
-  const [user, setUser] = useState({user:JSON.parse(localStorage.getItem("userData"))??{}, token:localStorage.getItem("token")?? false})
+  const [user, setUser] = useState({user:JSON.parse(localStorage.getItem("userData")??null)??{}, token:localStorage.getItem("token")?? false})
   const [loading, setLoading] = useState(false)
   async function loginFunction(inputData) {
     setLoading(true);
@@ -62,12 +62,14 @@ export default function UserProvider({ children }) {
       };
       const response = await fetch(`${BASE_URL}/auth/signup`, requestOptions)
       const data = await response.json()
+      toast.success(data.message)
       console.log(data);
       setUser({user:data?.user, token:data?.token})
-      localStorage.setItem("userData", data?.user)
+      localStorage.setItem("token", data?.token)
+      localStorage.setItem("userData",  JSON.stringify(data?.user))
       setLoading(false)
       navigate('/dashboard')
-      toast.success(data.message)
+      
     } catch (e) {
       setLoading(false);
       toast.error(e.message);

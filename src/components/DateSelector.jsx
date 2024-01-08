@@ -6,7 +6,6 @@ import { useData } from '../context/DataContext';
 export default function DateRange(){
 
 const {filters,setFilters} = useData();
-console.log("dkljsadlfk", filters.startDate)
   const selectionRange = {
     startDate:filters.startDate ?? new Date(),
     endDate:filters.endDate ?? new Date(),

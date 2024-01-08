@@ -15,8 +15,8 @@ export default function DataProvider({ children }) {
     : {
         age: "",
         gender: "",
-        startDate: "",
-        endDate: "",
+        startDate: new Date(data[0]?.Day) ?? new Date(),
+        endDate: new Date(),
       };
   const [filters, setFilters] = useState(initialFilters);
   console.log(filters);
@@ -90,6 +90,12 @@ export default function DataProvider({ children }) {
         Day: convertDateFormat(item.Day),
       }));
       setData(fixedDatedArray);
+      setFilters(prev=>({...prev, 
+        startDate: cookies?.filters?.startDate ?? new Date(fixedDatedArray[0]?.Day),
+        endDate:cookies?.filters?.endDate ?? new Date(),
+      })
+     
+      )
       setLoading(false);
     } catch (e) {
       console.error(e);
@@ -117,24 +123,29 @@ export default function DataProvider({ children }) {
     });
     setFeature("");
   };
+
+
   useEffect(() => {
     getData();
   }, []);
+
   useEffect(() => {
     setCookie("filters", filters, { path: "/" });
-  }, [filters, setCookie]);
+  }, [filters]);
+
   useEffect(() => {
     if (data.length <= 0) {
       setLoading(true);
-    } else {
+    } else {     
       setFilters(prev=>({
         ...prev,
-        startDate: new Date(filters.startDate) ?? new Date(data[0]?.Day),
+        startDate:new Date(filters.startDate) ?? new Date(data[0]?.Day) ?? new Date(filters.startDate) ,
         endDate:new Date( filters.endDate )?? new Date(),
       }));
       setLoading(false);
     }
   }, [data]);
+
   return (
     <DataContext.Provider
       value={{

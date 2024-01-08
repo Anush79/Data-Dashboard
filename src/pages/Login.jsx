@@ -8,7 +8,6 @@ import { useData } from "../context/DataContext";
 
 export default function Login() {
   const { gender, age, startDate, endDate } = useParams();
-  console.log("from params", { gender, age, startDate, endDate } )
   const { setFilters, setCookie } = useData();
   const [userData, setUserData] = useState({
     email: "",
@@ -24,22 +23,14 @@ export default function Login() {
   };
 
   useEffect(() => {
+  
     setFilters({
       gender,
       age,
       startDate,
       endDate,
     });
-    setCookie(
-      "filters",
-      {
-        gender,
-        age,
-        startDate,
-        endDate,
-      },
-      { path: "/" }
-    );
+
   }, []);
   return (
     <div className="loginContainer">
@@ -52,7 +43,7 @@ export default function Login() {
         sx={{
           "& > :not(style)": { m: 1, width: "30ch" },
         }}
-        noValidate
+       
         autoComplete="off"
       >
         <TextField
