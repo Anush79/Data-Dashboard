@@ -35,7 +35,7 @@ export default function DataProvider({ children }) {
     data.length > 0
       ? ageFiltered?.filter((item) => {
           let itemDate = new Date(item?.Day);
-          return itemDate >= filters.startDate && itemDate <= filters.endDate; 
+          return itemDate >= filters.startDate && itemDate <= filters.endDate;
         })
       : ageFiltered;
 
@@ -127,11 +127,11 @@ export default function DataProvider({ children }) {
     if (data.length <= 0) {
       setLoading(true);
     } else {
-      setFilters({
-        ...filters,
-        startDate: filters.startDate ?? new Date(data[0]?.Day),
-        endDate: filters.endDate ?? new Date(),
-      });
+      setFilters(prev=>({
+        ...prev,
+        startDate: new Date(filters.startDate) ?? new Date(data[0]?.Day),
+        endDate:new Date( filters.endDate )?? new Date(),
+      }));
       setLoading(false);
     }
   }, [data]);

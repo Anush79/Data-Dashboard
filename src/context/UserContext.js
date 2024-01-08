@@ -6,7 +6,7 @@ const UserContext = createContext();
 
 export default function UserProvider({ children }) {
   const navigate = useNavigate()
-  const [user, setUser] = useState({user:localStorage.getItem("userData")??{}, token:localStorage.getItem("token")?? false})
+  const [user, setUser] = useState({user:JSON.parse(localStorage.getItem("userData"))??{}, token:localStorage.getItem("token")?? false})
   const [loading, setLoading] = useState(false)
   async function loginFunction(inputData) {
     setLoading(true);
@@ -30,7 +30,7 @@ export default function UserProvider({ children }) {
       setLoading(false)
       navigate('/dashboard')
       localStorage.setItem("token", data?.token)
-      localStorage.setItem("userData", data?.user)
+      localStorage.setItem("userData", JSON.stringify(data?.user))
       toast.success(data.message)
     } catch (e) {
       setLoading(false)

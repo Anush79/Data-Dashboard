@@ -65,9 +65,9 @@ export default function Dashboard() {
     navigate(
       `/dashboard/${filters.gender ? filters.gender : "undefined"}/${
         filters.age ? filters.age : "undefined"
-      }/${filters.startDate ?? ""}/${filters.endDate ?? ""}`
+      }/${new Date(filters.startDate) ?? "undefined"}/${new Date(filters.endDate) ?? "undefined"}`
     );
-  }, [filters,totaltime, navigate, data]);
+  }, [filters,totaltime, data]);
 
   return (
     <>

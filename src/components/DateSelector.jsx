@@ -5,14 +5,16 @@ import { DateRangePicker } from 'react-date-range';
 import { useData } from '../context/DataContext';
 export default function DateRange(){
 
-const {filters,setFilters} = useData()
+const {filters,setFilters} = useData();
+
   const selectionRange = {
     startDate:filters.startDate ?? new Date(),
     endDate:filters.endDate ?? new Date(),
     key: 'selection',
   }
+
   
-  function handleSelect(ranges){
+  function handleSelect(ranges){  console.log(ranges.selection.startDate);
    setFilters(prev=>({...prev, startDate:ranges.selection.startDate,endDate:ranges.selection.endDate }))
   }
 

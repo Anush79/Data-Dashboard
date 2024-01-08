@@ -23,26 +23,25 @@ export default function Login() {
   };
 
   useEffect(() => {
-    console.log({ startDate, endDate });
     setFilters({
       gender,
       age,
-      startDate: new Date(startDate),
-      endDate: new Date(endDate),
+      startDate,
+      endDate,
     });
     setCookie(
       "filters",
       {
         gender,
         age,
-        startDate: new Date(startDate),
-        endDate: new Date(endDate),
+        startDate,
+        endDate,
       },
       { path: "/" }
     );
   }, []);
   return (
-    <div className="loginContainer">
+    <div cla  ssName="loginContainer">
       <h2>
         <u>Welcome to Data Visualization Center</u>{" "}
       </h2>
