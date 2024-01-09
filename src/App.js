@@ -9,6 +9,7 @@ import Header from './components/Header';
 import { useUser } from './context/UserContext';
 import Loading from './components/Loading';
 import ToastContain from './components/ToastContainer';
+import Footer from './components/Footer';
 
 function App() {
   const { user ,loading} = useUser()
@@ -26,6 +27,7 @@ function App() {
         <Route path="/dashboard/" element={user.token ? <Dashboard /> : <Login />} />
       <Route path='*' element={<h2>Something went wrong, route not found</h2>}/>
       </Routes>
+      <Footer/>
       <ToastContain/>
     </div>
   );
